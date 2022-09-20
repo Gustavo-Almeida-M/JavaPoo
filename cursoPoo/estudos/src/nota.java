@@ -49,7 +49,7 @@ class MediaNotas{
 
     double media()
     {
-        double t = -50;
+        double t = 0;
         for(Double x: notas)
         {
             t += x;
@@ -68,7 +68,19 @@ class MediaNotas{
 
     public String toString()
     {
-        return notas.toString();
+        String o = "[";
+        for(int i = 0; i < notas.size(); i++)
+        {
+            if(i == 0)
+            {
+                o += String.format("%.2f", notas.get(i));
+            }
+            else
+            {
+                o += String.format(", %.2f", notas.get(i));
+            }
+        }
+        return o += "]";
     }
 
     
