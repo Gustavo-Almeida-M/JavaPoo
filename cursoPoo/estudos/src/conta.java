@@ -2,7 +2,8 @@ import java.util.Scanner;
 import java.util.ArrayList;
 import java.util.Locale;
 
-class Conta {
+class Conta 
+    {
     private String titular;
     private int numero;
     private double saldo;
@@ -10,17 +11,15 @@ class Conta {
     
     public Conta(String titular)
     {
-
+        this.titular = titular;
     }
     public void show(String titular, int numero, double saldo)
     {
         System.out.printf("Nro da conta: %d, Titular: %s, Saldo: %.2lf", numero, titular, saldo);
     }
-
-
-    void deposita(double valor)
+    static void cont(int numeroC)
     {
-        this.saldo += valor;
+        totalContas = numeroC;
     }
 
     static void deposita(Conta c, double valor)
@@ -35,15 +34,23 @@ class Conta {
 
     static void saca(Conta c, double valor)
     {
-        c.saldo -= valor;   
+        double valorinit = c.saldo;
+        
+        c.saldo -= valor;
+        if(c.saldo < 0)
+        {
+            System.out.printf("Conta ficou zerada após o saque %.2f reais\n", valorinit);
+            c.saldo = 0;
+        }
     }
 
     // boolean transfere(Conta c, double valor){
         
     // }
 
-    static boolean transfere(Conta origem, Conta destino, double valor){
-        
+    static boolean transfere(Conta origem, Conta destino, double valor)
+    {
+        return true;
     }
     
 
@@ -55,6 +62,14 @@ class Conta {
     double getSaldo()
     {
         return saldo;    
+    }
+    String getTitular()
+    {
+        return titular;
+    }
+    int getNumero()
+    {
+        return numero;
     }
 }
 
@@ -72,6 +87,7 @@ class Solver{
             String line = scanner.nextLine();
             String ui[] = line.split(" ");
             System.out.println("$" + line);
+
 
             if(ui[0].equals("init")) {
                 contas.add( new Conta( ui[1] ) );
